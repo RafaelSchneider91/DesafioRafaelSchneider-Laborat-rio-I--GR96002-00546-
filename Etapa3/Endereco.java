@@ -8,7 +8,7 @@
  * retornando uma String formatada da forma que você desejar, desde que contenha as informações de todos os atributos da classe.
  */
 
-package Etapa2;
+package Etapa3;
 
 public class Endereco {
     private String nomeDaRua, cidade, estado, pais, Cep, numero, complemento;

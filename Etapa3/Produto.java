@@ -8,7 +8,7 @@
  */
 
 
-package Etapa2;
+package Etapa3;
 
 public class Produto {
     private String nome;
@@ -52,7 +52,8 @@ public class Produto {
         return "Produto{"+
                 "nome='"+nome+'\''+
                 ", preço =" + preco +
-                            '}';    
+                ", dataValidade =" + dataValidade +
+                '}';    
     }
 
 

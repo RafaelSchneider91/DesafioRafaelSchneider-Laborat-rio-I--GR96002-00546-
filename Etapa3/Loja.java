@@ -12,7 +12,7 @@
  * Método tamanhoDaLoja: este método não recebe parâmetros e retorna um dos seguintes caracteres: ‘P’, caso a loja possua menos de 10 funcionários; ‘M’, caso a 
  loja possua entre 10 (inclusive) e 30 (inclusive) funcionários; ou ‘G’, caso a loja possua mais do que 31 (inclusive) funcionários.
  */
-package Etapa2;
+package Etapa3;
 
 public class Loja{
     private String nome;
@@ -83,6 +83,7 @@ public class Loja{
                 "nome='"+nome+'\''+
                 ", funcionarios='"+quantidadeFuncionarios+'\''+
                 ", salario =" + salarioBaseFuncionario +
+                ", endereco =" + endereco +
                 ", data de fundacao =" + dataFundacao +
                 '}';    
     }
