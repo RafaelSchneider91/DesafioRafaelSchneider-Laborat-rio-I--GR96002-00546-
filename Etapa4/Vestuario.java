@@ -20,7 +20,7 @@ public class Vestuario extends Loja{
     public String toString(){
         return "Loja{"+
                 "Vende produtos Importados='"+produtosImportados+'\''+
-                '}';    
+                '}';
     }
 
 }

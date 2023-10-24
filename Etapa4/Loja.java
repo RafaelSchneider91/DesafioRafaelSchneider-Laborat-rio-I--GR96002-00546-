@@ -11,6 +11,21 @@
  de que não é possível realizar este cálculo caso o valor do salário base seja -1. Neste caso, não realize o cálculo e retorne -1.
  * Método tamanhoDaLoja: este método não recebe parâmetros e retorna um dos seguintes caracteres: ‘P’, caso a loja possua menos de 10 funcionários; ‘M’, caso a 
  loja possua entre 10 (inclusive) e 30 (inclusive) funcionários; ou ‘G’, caso a loja possua mais do que 31 (inclusive) funcionários.
+
+
+* Na classe Loja, crie um novo atributo, que representa os produtos que a loja possui.
+* Este atributo deve ser chamado de estoqueProdutos, e é um array de Produto.
+* Sempre que uma loja for criada (ou seja, nos métodos construtores), deve ser informada a quantidade máxima de produtos por parâmetro.
+* Assim sendo, o array estoqueProdutos será instanciado nos construtores com o tamanho recebido por parâmetro.
+* Naturalmente, quando uma loja for criada, o estoque de produtos não terá produtos ainda, apenas espaço necessário para armazená-los.
+* Crie os métodos de acesso para este atributo.
+* Atualize o método toString.
+
+* imprimeProdutos: este método não recebe parâmetros e imprime a informação de todos os produtos da loja.
+* insereProduto: este método recebe um Produto por parâmetro e insere-o na primeira posição livre do array de estoque desta loja (ou seja, na primeira posição nula do array).
+* O método deve retornar verdadeiro caso o produto seja inserido no estoque ou falso caso não, seja (no caso de não haver espaço).
+* removeProduto: este método recebe uma String que representa o nome de um produto e remove o produto correspondente do estoque. O método retorna verdadeiro caso o produto tenha sido removido e falso caso contrário (caso não haja o produto solicitado no estoque).
+
  */
 package Etapa4;
 
@@ -20,6 +35,7 @@ public class Loja{
     private double salarioBaseFuncionario;
     private Endereco endereco;
     private Data dataFundacao;
+    private Produto[] estoqueProdutos; //array de Produtos;
 
     public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao){
         this.nome = nome;
@@ -36,6 +52,30 @@ public class Loja{
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
     
+    }
+
+    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int qtdMaxEstoqueProdutos){
+        this.nome = nome;
+        this.quantidadeFuncionarios = quantidadeFuncionarios;
+        this.salarioBaseFuncionario = salarioBaseFuncionario;
+        this.endereco = endereco;
+        this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[qtdMaxEstoqueProdutos];
+        for(int i=0; i<estoqueProdutos.length; i++){
+            estoqueProdutos[i] = null;
+        }
+    }
+
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao, int qtdMaxEstoqueProdutos ){
+        this.nome = nome;
+        this.quantidadeFuncionarios = quantidadeFuncionarios;
+        this.salarioBaseFuncionario = -1.0;
+        this.endereco = endereco;
+        this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[qtdMaxEstoqueProdutos];
+        for(int i=0; i<estoqueProdutos.length; i++){
+            estoqueProdutos[i] = null;
+        }   
     }
 
     public String getNome() {
@@ -58,6 +98,11 @@ public class Loja{
         return dataFundacao;
     }
 
+    public Produto[] getEstoqueProdutos() {
+        return estoqueProdutos;
+    }
+
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -77,16 +122,12 @@ public class Loja{
         this.dataFundacao = dataFundacao;
     }
 
-    @Override
-    public String toString(){
-        return "Loja{"+
-                "nome='"+nome+'\''+
-                ", funcionarios='"+quantidadeFuncionarios+'\''+
-                ", salario =" + salarioBaseFuncionario +
-                ", endereco =" + endereco +
-                ", data de fundacao =" + dataFundacao +
-                '}';    
+    public void setEstoqueProdutos(Produto[] estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
     }
+
+
+   z
 
 
     public double gastosComSalario(){
@@ -94,9 +135,7 @@ public class Loja{
             return -1.00;
         } else {
             return (quantidadeFuncionarios * salarioBaseFuncionario);
-        }
-        
-        
+        }       
     }
 
     public char tamanhoDaLoja(){
@@ -106,5 +145,34 @@ public class Loja{
             return 'M';
         }else return 'G';
         
+    }
+
+    public boolean insereProduto(Produto novoProduto) { //metodo para inserir novos produtos no array;
+        if(novoProduto == null){
+            return false;
+        }
+        
+        for (int i = 0; i < estoqueProdutos.length; i++) {
+            if (estoqueProdutos[i] == null) {
+                estoqueProdutos[i] = novoProduto;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void removeProduto(Produto removeProduto){
+        // TODO: criar o metodo removeProduto;
+    }
+    
+    public void imprimeProdutos(){ //metodo para imprimir os produtos do array;
+        
+        for(int i =0; i< estoqueProdutos.length; i++){
+            Produto produto = estoqueProdutos[i];
+            if(produto != null) {
+            System.out.println("Produto" + estoqueProdutos[i] + produto.toString());
+            }
+        }
     }
 }
