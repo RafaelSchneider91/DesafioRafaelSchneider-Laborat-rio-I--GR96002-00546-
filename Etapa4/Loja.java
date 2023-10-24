@@ -37,23 +37,6 @@ public class Loja{
     private Data dataFundacao;
     private Produto[] estoqueProdutos; //array de Produtos;
 
-    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao){
-        this.nome = nome;
-        this.quantidadeFuncionarios = quantidadeFuncionarios;
-        this.salarioBaseFuncionario = salarioBaseFuncionario;
-        this.endereco = endereco;
-        this.dataFundacao = dataFundacao;
-    }
-
-    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao){
-        this.nome = nome;
-        this.quantidadeFuncionarios = quantidadeFuncionarios;
-        this.salarioBaseFuncionario = -1.0;
-        this.endereco = endereco;
-        this.dataFundacao = dataFundacao;
-    
-    }
-
     public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int qtdMaxEstoqueProdutos){
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
@@ -126,10 +109,6 @@ public class Loja{
         this.estoqueProdutos = estoqueProdutos;
     }
 
-
-   z
-
-
     public double gastosComSalario(){
         if (salarioBaseFuncionario == -1) {
             return -1.00;
@@ -162,8 +141,15 @@ public class Loja{
         return false;
     }
 
-    public void removeProduto(Produto removeProduto){
-        // TODO: criar o metodo removeProduto;
+    public boolean removeProduto(String nomeProduto){
+        for(int i=0; i < estoqueProdutos.length; i++){
+            if (estoqueProdutos[i] != null && estoqueProdutos[i].getNome().equalsIgnoreCase(nomeProduto)){
+                estoqueProdutos[i] = null; //Remove o produto, definido o array como null;
+                return true; //Produto removido
+            }
+        }
+
+        return false; //Produto não removido;
     }
     
     public void imprimeProdutos(){ //metodo para imprimir os produtos do array;

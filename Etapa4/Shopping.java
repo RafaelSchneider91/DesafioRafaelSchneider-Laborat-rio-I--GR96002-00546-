@@ -108,5 +108,8 @@ public class Shopping {
         // TODO: criar lojaSeguroMaisCaro;
         // lojaSeguroMaisCaro: este método não recebe parâmetros e retorna a loja do tipo Informatica que paga o maior valor de seguro de eletrônicos do shopping.
         // - Caso não haja lojas deste tipo, o método retorna null.
+        String loja = "Informatica";
+
+    
     }
 }

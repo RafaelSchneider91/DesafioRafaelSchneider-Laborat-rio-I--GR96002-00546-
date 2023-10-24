@@ -17,15 +17,9 @@ public class Main {
 
         // Loja teste = new Loja("teste", 20, e1, d1);
 
-        // //// Verificação da classe Loja
-		Loja loja1 = new Loja ("E3", 5, e1, d1, 5);
-		System.out.println("\n[OK] Classe Loja identificada (construtor com cinco parâmetros)");
-
-        Loja loja2 = new Loja ("E7", 20, 2000, e1, d1, 2);
-		System.out.println("[OK] Classe Loja identificada (construtor com seis parâmetros)");
-
-        System.out.println(loja2.toString());
-
-
+       //// Verificação da classe Cosmetico
+		//Criação da instância
+		Cosmetico lojaCosmetico = new Cosmetico("Loja Cosmético", 10, 2100, e1, d1, 20, 10);
+		System.out.println("\n[OK] Classe Cosmetico identificada");
     }
 }

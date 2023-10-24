@@ -3,8 +3,8 @@ package Etapa4;
 public class Cosmetico extends Loja{
     private double taxaComercializacao;
 
-    public Cosmetico(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, double taxaComercializacao){
-        super(nome, quantidadeFuncionarios, endereco, dataFundacao);
+    public Cosmetico(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int qtdMaxEstoqueProdutos, double taxaComercializacao){
+        super(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao, qtdMaxEstoqueProdutos);
         this.taxaComercializacao = taxaComercializacao;
     }
 
