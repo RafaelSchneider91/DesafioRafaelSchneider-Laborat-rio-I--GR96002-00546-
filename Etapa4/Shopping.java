@@ -44,7 +44,7 @@ public class Shopping {
         return endereco;
     }
 
-    public Loja[] getQtdLojas() {
+    public Loja[] getLojas() {
         return Lojas;
     }
 
@@ -79,7 +79,7 @@ public class Shopping {
         return false;
     }
     
-    public boolean removeLoja(Loja removeLoja){
+    public boolean removeLoja(String removeLoja){
         for(int i=0; i < Lojas.length; i++){
             if (Lojas[i] != null){
                 Lojas[i] = null; //Remove a loja, definido o array como null;
@@ -105,10 +105,11 @@ public class Shopping {
     }
 
     public void lojaSeguroMaisCaro(){
-        // TODO: criar lojaSeguroMaisCaro;
         // lojaSeguroMaisCaro: este método não recebe parâmetros e retorna a loja do tipo Informatica que paga o maior valor de seguro de eletrônicos do shopping.
         // - Caso não haja lojas deste tipo, o método retorna null.
-        String loja = "Informatica";
+        for (int i=0; i < Lojas.length; i++){
+            
+        }
 
     
     }

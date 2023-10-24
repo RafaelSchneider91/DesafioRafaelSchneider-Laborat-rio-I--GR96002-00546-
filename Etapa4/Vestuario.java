@@ -3,8 +3,8 @@ package Etapa4;
 public class Vestuario extends Loja{
     private boolean produtosImportados;
 
-    public Vestuario(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, boolean produtosImportados){
-        super(nome, quantidadeFuncionarios, endereco, dataFundacao);
+    public Vestuario(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao,  boolean produtosImportados, int qtdMaxEstoqueProdutos){
+        super(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao, qtdMaxEstoqueProdutos);
         this.produtosImportados = produtosImportados;
     }
 
