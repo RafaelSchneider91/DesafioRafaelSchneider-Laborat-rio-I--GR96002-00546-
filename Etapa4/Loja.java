@@ -30,12 +30,12 @@
 package Etapa4;
 
 public class Loja{
-    private String nome;
-    private int quantidadeFuncionarios;
-    private double salarioBaseFuncionario;
-    private Endereco endereco;
-    private Data dataFundacao;
-    private Produto[] estoqueProdutos; //array de Produtos;
+    public String nome;
+    public int quantidadeFuncionarios;
+    public double salarioBaseFuncionario;
+    public Endereco endereco;
+    public Data dataFundacao;
+    public Produto[] estoqueProdutos; //array de Produtos;
 
     public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int qtdMaxEstoqueProdutos){
         this.nome = nome;
@@ -60,6 +60,8 @@ public class Loja{
             estoqueProdutos[i] = null;
         }   
     }
+
+
 
     public String getNome() {
         return nome;
@@ -129,8 +131,7 @@ public class Loja{
     public boolean insereProduto(Produto novoProduto) { //metodo para inserir novos produtos no array;
         if(novoProduto == null){
             return false;
-        }
-        
+        }        
         for (int i = 0; i < estoqueProdutos.length; i++) {
             if (estoqueProdutos[i] == null) {
                 estoqueProdutos[i] = novoProduto;
@@ -157,8 +158,25 @@ public class Loja{
         for(int i =0; i< estoqueProdutos.length; i++){
             Produto produto = estoqueProdutos[i];
             if(produto != null) {
-            System.out.println("Produto" + estoqueProdutos[i] + produto.toString());
+                // System.out.println("Produto" + estoqueProdutos[i] + produto.toString());
+                System.out.println("Produto: " + produto.toString());
+
             }
         }
     }
+
+
+    @Override
+    public String toString(){
+        return "Loja{"+
+                "nome = " +nome +
+                ", endereço = "+ endereco +
+                ", quantidade de funcionarios = " + quantidadeFuncionarios +
+                ", salario base funcionarios = " + salarioBaseFuncionario +
+                ", data de fundacao = " + dataFundacao +
+                ", estoque produtos = " + estoqueProdutos +
+                '}';    
+    }
+
+    
 }

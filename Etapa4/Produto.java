@@ -6,8 +6,6 @@
  * formatada da forma que você desejar, desde que contenha as informações de todos os atributos da classe.
 
  */
-
-
 package Etapa4;
 
 public class Produto {
@@ -50,9 +48,9 @@ public class Produto {
     @Override
     public String toString(){
         return "Produto{"+
-                "nome='"+nome+'\''+
-                ", preço =" + preco +
-                ", dataValidade =" + dataValidade +
+                "nome: "+nome + 
+                ", preço: " + preco +
+                ", dataValidade: " + dataValidade +
                 '}';    
     }
 

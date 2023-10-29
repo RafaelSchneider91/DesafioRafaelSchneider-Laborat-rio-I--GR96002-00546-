@@ -22,18 +22,19 @@
 
 package Etapa4;
 
+import java.text.Normalizer;
+
+import javax.sound.midi.MidiDevice.Info;
+
 public class Shopping {
     private String nome;
     private Endereco endereco;
-    private Loja[] Lojas;
+    private Loja[] lojas;
 
     public Shopping(String nome, Endereco endereco, int qtdMaxLojas){
         this.nome = nome;
         this.endereco = endereco;
-        this.Lojas = new Loja[qtdMaxLojas];
-        // for(int i=0; i<qtdLojas.length; i++){
-        //     qtdLojas[i] = null;
-        // }   
+        this.lojas = new Loja[qtdMaxLojas];
     }
 
     public String getNome() {
@@ -45,7 +46,7 @@ public class Shopping {
     }
 
     public Loja[] getLojas() {
-        return Lojas;
+        return lojas;
     }
 
     public void setNome(String nome) {
@@ -57,60 +58,93 @@ public class Shopping {
     }
 
     public void setQtdLojas(Loja[] Lojas) {
-        this.Lojas = Lojas;
+        this.lojas = Lojas;
     }
 
+    public int calcQtdLojas() {
+        int qtdLojas = 0;
+        for (int i = 0; i < lojas.length; i++) {
+            if (lojas[i] != null) {
+                qtdLojas++;
+            }
+        }
+        return qtdLojas;
+    }
+    
     @Override
     public String toString(){
         return "Shopping{"+
                 "nome = " +nome +
                 ", endereço = "+ endereco +
-                ", qtd lojdas = " + Lojas +
+                ", qtd lojdas = " + lojas +
                 '}';    
     }
 
     public boolean insereLoja(Loja novaLoja){
-        for(int i=0; i < Lojas.length; i++){
-            if(Lojas[i] == null){
-                Lojas[i] = novaLoja;
+        for(int i=0; i < lojas.length; i++){
+            if(lojas[i] == null){
+                lojas[i] = novaLoja;
                 return true; 
             }
         }
         return false;
     }
     
-    public boolean removeLoja(String removeLoja){
-        for(int i=0; i < Lojas.length; i++){
-            if (Lojas[i] != null){
-                Lojas[i] = null; //Remove a loja, definido o array como null;
+    public boolean removeLoja(String removeLoja){ //remove a loja buscando pelo nome dela;
+        for(int i=0; i < lojas.length; i++){
+            if (lojas[i] != null && lojas[i].getNome().equalsIgnoreCase(removeLoja)){
+                lojas[i] = null; //Remove a loja, definido o array como null;
                 return true; //Loja removida
             }
         }
         return false; //Loja não encontrada
     }
 
-    public int quantidadeLojasPorTipo(String tipoLoja){
-        int quantidade = 0;
-        for(int i=0; i < Lojas.length; i++){
-            if (Lojas[i] != null){
-                quantidade++;
+    // Método para normalizar uma string para sua Forma Canônica Composta (NFC)
+    public static String normalizar(String str) {
+        return Normalizer.normalize(str, Normalizer.Form.NFC);
+    }
+
+    public int quantidadeLojasPorTipo(String tipoLoja) {
+        int total = 0;
+    
+        // Normaliza o tipoLoja para garantir consistência
+        tipoLoja = normalizar(tipoLoja);
+    
+        for (int i = 0; i < lojas.length; i++) {
+            if (lojas[i] != null && lojas[i] instanceof Loja) {
+                if (lojas[i] instanceof Bijuteria) {
+                    if (((Bijuteria) lojas[i]).getTipoLoja().equalsIgnoreCase(tipoLoja)) {
+                        total++;
+                    }
+                }
+                if (lojas[i] instanceof Informatica) {
+                    if (((Informatica) lojas[i]).getTipoLoja().equalsIgnoreCase(tipoLoja)) {
+                        total++;
+                    }
+                }
+                
+            }
+        }
+        return total;
+    } 
+
+    public Informatica lojaSeguroMaisCaro() {
+        Informatica lojaMaisCara = null;
+        double valorMaisCaro = 0.0;
+
+        for (int i =0; i < lojas.length; i++){
+            if (lojas[i] instanceof Informatica) {
+                Informatica informatica = (Informatica) lojas[i];
+                if(informatica.getSeguroEletronicos() > valorMaisCaro){
+                    valorMaisCaro = informatica.getSeguroEletronicos();
+                    lojaMaisCara = informatica;
+                }
+                
             }
         }
 
-        if(quantidade > 0) {
-            return quantidade;
-        }else{
-            return -1; //tipo de loja não encontrado;
-        }
+        return lojaMaisCara;
     }
-
-    public void lojaSeguroMaisCaro(){
-        // lojaSeguroMaisCaro: este método não recebe parâmetros e retorna a loja do tipo Informatica que paga o maior valor de seguro de eletrônicos do shopping.
-        // - Caso não haja lojas deste tipo, o método retorna null.
-        for (int i=0; i < Lojas.length; i++){
-            
-        }
-
     
-    }
 }
