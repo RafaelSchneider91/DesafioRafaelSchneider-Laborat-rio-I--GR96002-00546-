@@ -61,8 +61,6 @@ public class Loja{
         }   
     }
 
-
-
     public String getNome() {
         return nome;
     }

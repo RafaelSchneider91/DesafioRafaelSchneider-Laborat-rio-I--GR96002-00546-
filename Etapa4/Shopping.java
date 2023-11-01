@@ -24,8 +24,6 @@ package Etapa4;
 
 import java.text.Normalizer;
 
-import javax.sound.midi.MidiDevice.Info;
-
 public class Shopping {
     private String nome;
     private Endereco endereco;
@@ -62,13 +60,13 @@ public class Shopping {
     }
 
     public int calcQtdLojas() {
-        int qtdLojas = 0;
-        for (int i = 0; i < lojas.length; i++) {
+        int qtdLojas = 0; //inicia com o valor variavel zero.
+        for (int i = 0; i < lojas.length; i++) {// inicia a varredura do array lojas se for diferente de nulo, a variavel qtdLojas, recebe a soma de +1;
             if (lojas[i] != null) {
                 qtdLojas++;
             }
         }
-        return qtdLojas;
+        return qtdLojas; //apos passar por todo o array, retorna a qtd de lojas.
     }
     
     @Override
@@ -80,9 +78,9 @@ public class Shopping {
                 '}';    
     }
 
-    public boolean insereLoja(Loja novaLoja){
+    public boolean insereLoja(Loja novaLoja){ // retorna true caso inserido com sucesso e false caso negativo;
         for(int i=0; i < lojas.length; i++){
-            if(lojas[i] == null){
+            if(lojas[i] == null){ //verifica o espaço nulo e caso verdadeiro atribui a loja que foi instaciada no parametro do metodo;
                 lojas[i] = novaLoja;
                 return true; 
             }
@@ -92,7 +90,7 @@ public class Shopping {
     
     public boolean removeLoja(String removeLoja){ //remove a loja buscando pelo nome dela;
         for(int i=0; i < lojas.length; i++){
-            if (lojas[i] != null && lojas[i].getNome().equalsIgnoreCase(removeLoja)){
+            if (lojas[i] != null && lojas[i].getNome().equalsIgnoreCase(removeLoja)){ //busca as lojas diferentes de null e o nome da loja ignorando letras maiusculas e minusculas;
                 lojas[i] = null; //Remove a loja, definido o array como null;
                 return true; //Loja removida
             }
@@ -106,19 +104,18 @@ public class Shopping {
     }
 
     public int quantidadeLojasPorTipo(String tipoLoja) {
-        int total = 0;
-    
-        // Normaliza o tipoLoja para garantir consistência
-        tipoLoja = normalizar(tipoLoja);
+        int total = 0; 
+        
+        tipoLoja = normalizar(tipoLoja); // Normaliza o tipoLoja para garantir consistência de palavras;
     
         for (int i = 0; i < lojas.length; i++) {
-            if (lojas[i] != null && lojas[i] instanceof Loja) {
-                if (lojas[i] instanceof Bijuteria) {
-                    if (((Bijuteria) lojas[i]).getTipoLoja().equalsIgnoreCase(tipoLoja)) {
-                        total++;
+            if (lojas[i] != null && lojas[i] instanceof Loja) { //se caso o objeto da loja i possuir um instancia do tipo loja
+                if (lojas[i] instanceof Bijuteria) { //se caso o objeto da loja i possuir um instancia do tipo bijuteria
+                    if (((Bijuteria) lojas[i]).getTipoLoja().equalsIgnoreCase(tipoLoja)) { //se caso o objeto bijuteria possuir o tipo loja bijuteria, então sera atribuido o valor +1 na variavel total;
+                        total++; 
                     }
                 }
-                if (lojas[i] instanceof Informatica) {
+                if (lojas[i] instanceof Informatica) { //se caso o objeto da loja i possuir um instancia do tipo informatica
                     if (((Informatica) lojas[i]).getTipoLoja().equalsIgnoreCase(tipoLoja)) {
                         total++;
                     }
@@ -129,22 +126,30 @@ public class Shopping {
         return total;
     } 
 
-    public Informatica lojaSeguroMaisCaro() {
-        Informatica lojaMaisCara = null;
-        double valorMaisCaro = 0.0;
+    public Informatica lojaSeguroMaisCaro() { //busca a loja com seguro mais caro das lojas do tipo Informática.
+        Informatica lojaMaisCara = null; //inicia o metodo com a variavel com valor null;
+        double valorMaisCaro = 0.0; //inicia o metodo com a veriavel com valor 0.0;
 
         for (int i =0; i < lojas.length; i++){
-            if (lojas[i] instanceof Informatica) {
-                Informatica informatica = (Informatica) lojas[i];
-                if(informatica.getSeguroEletronicos() > valorMaisCaro){
-                    valorMaisCaro = informatica.getSeguroEletronicos();
-                    lojaMaisCara = informatica;
+            if (lojas[i] instanceof Informatica) { //se a loja i , possui um instancia do tipo informatica,
+                Informatica informatica = (Informatica) lojas[i]; // é convertido (casting) e armazenado na variavel informatica, para poder acessar os metodos da classe informatica.
+                if(informatica.getSeguroEletronicos() > valorMaisCaro){// se o valor atual é maior do o valor da variavel nova, então é identificado a loja que possui o maior seguro.
+                    valorMaisCaro = informatica.getSeguroEletronicos(); //atualiza a variavel com o novo valor.
+                    lojaMaisCara = informatica; //atualiza a variavel com a loja do seguro maior;
                 }
                 
             }
         }
 
-        return lojaMaisCara;
+        return lojaMaisCara; //retorna o valor da variavel validado no for;
     }
     
+    public void imprimeLojas(){ //exibe todas as lojas criadas
+        for(int i =0; i < lojas.length; i++){
+            Loja l = lojas[i];
+            if (l != null) { //se a loja for diferente de nulo, sera impresso as lojas criadas com o metodo tostring criada na classe Loja.
+                System.out.println(l.toString());
+            }
+        }
+    }
 }
